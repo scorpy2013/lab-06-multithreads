@@ -43,7 +43,7 @@ add_library(template STATIC
         )
 add_executable(tests
         # TODO: enum your files and delete this comment
-        ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp
+        # ${CMAKE_CURRENT_SOURCE_DIR}/demo/main.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
         )
 
@@ -74,15 +74,3 @@ target_link_libraries(
 )
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)
-
-if (BUILD_COVERAGE)
-    set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
-    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-    find_package(codecov)
-    # TODO: change template word to project name and delete this comment
-    add_coverage(template)
-    add_coverage(tests)
-    list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/tests/*'")
-    coverage_evaluate()
-endif ()
-
